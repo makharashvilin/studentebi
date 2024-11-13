@@ -1,0 +1,17 @@
+<h1>{{ course.name }}</h1>
+<p>{{ course.description }}</p>
+<h4>Add a New Student</h4>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Student</button>
+</form>
+<h3> Students:</h3>
+<ul>
+    {% for students in course.students.all %}
+        <li>{{ student.name }} {{ student.lastname }} - Age: {{ student.age }}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'course_update' course.id %}">Edit</a>
+<a href="{% url 'course_delete' course.id %}">Delete</a>
+<a href="{% url 'course_list' %}">Back to list</a>
